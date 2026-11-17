@@ -1,0 +1,1643 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Panduan &amp; Walkthrough Resmi — SIC UIN Siber Cirebon</title>
+    <!-- Google Fonts: Anton + Caveat + Plus Jakarta Sans + Space Mono (Identik 100% dengan Web Asli) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --emerald-deep: #064e3b;
+            --emerald-primary: #059669;
+            --emerald-light: #10b981;
+            --champagne-gold: #f0dc9e;
+            --gold-hover: #e0c67e;
+            --studio-bg: #0b0f19;
+            --card-dark: #111827;
+            --border-dark: rgba(255, 255, 255, 0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--studio-bg);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 16px 60px;
+        }
+
+        /* Top Action Bar */
+        .video-studio-header {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(17, 24, 39, 0.85);
+            backdrop-filter: blur(14px);
+            border: 1px solid var(--border-dark);
+            border-radius: 16px;
+            padding: 14px 24px;
+            margin-bottom: 20px;
+        }
+
+        .studio-brand-group {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .studio-sic-logo {
+            width: 44px;
+            height: 44px;
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        .studio-sic-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .studio-heading h1 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.2;
+        }
+        .studio-heading p {
+            font-size: 0.76rem;
+            color: var(--champagne-gold);
+            font-weight: 700;
+            letter-spacing: 0.04em;
+        }
+
+        .studio-buttons {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-studio {
+            padding: 9px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .btn-back-home {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .btn-back-home:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-export-record {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: #ffffff;
+            box-shadow: 0 4px 16px rgba(239, 68, 68, 0.4);
+        }
+        .btn-export-record:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(239, 68, 68, 0.6);
+        }
+        .btn-export-record.recording {
+            background: #b91c1c;
+            animation: pulseRec 1.2s infinite;
+        }
+
+        @keyframes pulseRec {
+            0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            70% { box-shadow: 0 0 0 16px rgba(239, 68, 68, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+
+        /* 16:9 Screen Theater */
+        .video-theater-wrapper {
+            width: 100%;
+            max-width: 1200px;
+            background: #000000;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid rgba(240, 220, 158, 0.35);
+            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 40px rgba(5, 150, 105, 0.2);
+            position: relative;
+        }
+
+        #screencastCanvas {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9;
+            display: block;
+            background: #064e3b;
+        }
+
+        /* Subtitle Text Box (Hanya Teks, Tanpa Suara) */
+        .tutorial-subtitle-bar {
+            position: absolute;
+            bottom: 74px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 92%;
+            max-width: 980px;
+            background: rgba(6, 78, 59, 0.92);
+            border: 2px solid var(--champagne-gold);
+            border-radius: 14px;
+            padding: 14px 28px;
+            text-align: center;
+            backdrop-filter: blur(12px);
+            pointer-events: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.7);
+        }
+
+        .step-badge-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, var(--champagne-gold), var(--gold-hover));
+            color: #064e3b;
+            font-size: 0.72rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 4px 14px;
+            border-radius: 50px;
+            margin-bottom: 6px;
+        }
+
+        .tutorial-text-desc {
+            font-size: 1.08rem;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.45;
+        }
+
+        /* Video Controls */
+        .video-control-strip {
+            background: #090e18;
+            padding: 12px 22px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border-top: 1px solid var(--border-dark);
+        }
+
+        .btn-ctrl {
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+        .btn-ctrl:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--champagne-gold);
+        }
+
+        .timeline-seek-wrapper {
+            flex: 1;
+            position: relative;
+            cursor: pointer;
+            padding: 10px 0;
+        }
+
+        .timeline-bar-bg {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .timeline-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #10b981, var(--champagne-gold));
+            border-radius: 6px;
+            transition: width 0.08s linear;
+        }
+
+        .timestamp-text {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.82rem;
+            color: #94a3b8;
+            min-width: 100px;
+            text-align: center;
+        }
+
+        /* Scene Quick Navigation Pill */
+        .scene-card-grid {
+            width: 100%;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .scene-item-card {
+            background: var(--card-dark);
+            border: 1.5px solid var(--border-dark);
+            border-radius: 14px;
+            padding: 14px;
+            color: #ffffff;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s ease;
+        }
+        .scene-item-card:hover {
+            border-color: var(--champagne-gold);
+            transform: translateY(-2px);
+        }
+        .scene-item-card.active {
+            border-color: var(--emerald-light);
+            background: rgba(16, 185, 129, 0.15);
+            box-shadow: 0 4px 16px rgba(16, 185, 129, 0.25);
+        }
+
+        .scene-step-num {
+            font-size: 0.68rem;
+            font-weight: 900;
+            color: var(--champagne-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 4px;
+        }
+        .scene-step-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            line-height: 1.25;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Bottom Feature Card */
+        .feature-bottom-bar {
+            width: 100%;
+            max-width: 1200px;
+            background: rgba(17, 24, 39, 0.75);
+            border: 1.5px solid var(--border-dark);
+            border-radius: 16px;
+            padding: 24px;
+            margin-top: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-desc h3 {
+            font-size: 1.1rem;
+            color: var(--champagne-gold);
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+        .feature-desc p {
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            line-height: 1.5;
+        }
+
+        .btn-download-trigger {
+            background: linear-gradient(135deg, var(--champagne-gold), var(--gold-hover));
+            color: #064e3b;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 900;
+            font-size: 0.95rem;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 6px 20px rgba(240, 220, 158, 0.4);
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+        .btn-download-trigger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 26px rgba(240, 220, 158, 0.6);
+        }
+
+        @media (max-width: 900px) {
+            .scene-card-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .feature-bottom-bar {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Studio -->
+    <header class="video-studio-header">
+        <div class="studio-brand-group">
+            <div class="studio-sic-logo">
+                <img src="images/sic-logo.jpg" alt="SIC Logo" onerror="this.src='https://ui-avatars.com/api/?name=SIC&background=064e3b&color=f0dc9e&bold=true'">
+            </div>
+            <div class="studio-heading">
+                <h1>Screencast Video Panduan Penggunaan Portal SIC</h1>
+                <p>SIMULASI SCREENCAST ASLI LAPTOP • UIN SIBER SYEKH NURJATI CIREBON</p>
+            </div>
+        </div>
+        <div class="studio-buttons">
+            <button type="button" class="btn-studio btn-export-record" id="btnRecord" onclick="toggleRecording()">
+                <i class="fa-solid fa-circle"></i> <span id="recordText">Rekam &amp; Unduh Video</span>
+            </button>
+            <a href="/" class="btn-studio btn-back-home">
+                <i class="fa-solid fa-house"></i> Kembali ke Web
+            </a>
+        </div>
+    </header>
+
+    <!-- 16:9 Screen Theater Canvas -->
+    <div class="video-theater-wrapper">
+        <canvas id="screencastCanvas" width="1920" height="1080"></canvas>
+
+        <!-- Subtitle Text Bar (Visual Panduan Tanpa Suara) -->
+        <div class="tutorial-subtitle-bar" id="tutorialBar">
+            <div class="step-badge-tag" id="stepBadge">LANGKAH 1 DARI 6: BERANDA RESMI SIC</div>
+            <div class="tutorial-text-desc" id="stepText">
+                Kunjungi portal resmi SIC (Student Innovation &amp; Creativity) UIN Siber Cirebon untuk melihat etalase karya dan inovasi mahasiswa.
+            </div>
+        </div>
+
+        <!-- Video Control Bar -->
+        <div class="video-control-strip">
+            <button type="button" class="btn-ctrl" id="btnPlay" onclick="togglePlayPause()" title="Putar / Jeda">
+                <i class="fa-solid fa-play" id="playIcon"></i>
+            </button>
+            <button type="button" class="btn-ctrl" onclick="restartVideo()" title="Putar dari Awal">
+                <i class="fa-solid fa-rotate-left"></i>
+            </button>
+
+            <div class="timeline-seek-wrapper" onclick="seekVideo(event)">
+                <div class="timeline-bar-bg">
+                    <div class="timeline-bar-fill" id="timelineFill"></div>
+                </div>
+            </div>
+
+            <div class="timestamp-text" id="timeLabel">00:00 / 02:40</div>
+
+            <button type="button" class="btn-ctrl" onclick="toggleFullscreen()" title="Layar Penuh (Fullscreen)">
+                <i class="fa-solid fa-expand"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Quick Scene Cards -->
+    <div class="scene-card-grid">
+        <div class="scene-item-card active" onclick="goToScene(0)">
+            <div class="scene-step-num">Langkah 1</div>
+            <div class="scene-step-title">Beranda Web &amp; Hero</div>
+        </div>
+        <div class="scene-item-card" onclick="goToScene(1)">
+            <div class="scene-step-num">Langkah 2</div>
+            <div class="scene-step-title">Daftar Akun Mahasiswa</div>
+        </div>
+        <div class="scene-item-card" onclick="goToScene(2)">
+            <div class="scene-step-num">Langkah 3</div>
+            <div class="scene-step-title">Login ke Sistem</div>
+        </div>
+        <div class="scene-item-card" onclick="goToScene(3)">
+            <div class="scene-step-num">Langkah 4</div>
+            <div class="scene-step-title">Dashboard &amp; Upload Karya</div>
+        </div>
+        <div class="scene-item-card" onclick="goToScene(4)">
+            <div class="scene-step-num">Langkah 5</div>
+            <div class="scene-step-title">Admin Review &amp; Approve</div>
+        </div>
+        <div class="scene-item-card" onclick="goToScene(5)">
+            <div class="scene-step-num">Langkah 6</div>
+            <div class="scene-step-title">Karya Tayang di Beranda</div>
+        </div>
+    </div>
+
+    <!-- Bottom Feature Bar -->
+    <div class="feature-bottom-bar">
+        <div class="feature-desc">
+            <h3><i class="fa-solid fa-video"></i> Video Walkthrough Otomatis Siap Rekam &amp; Unduh</h3>
+            <p>
+                Video di atas menyimulasikan rekaman layar laptop asli di alamat <code>http://localhost/KaryaMahasiswa</code>. Seluruh elemen tampilan, mulai dari header hijau, logo SIC, font judul, formulir pendaftaran, dashboard kreator, hingga tabel kurasi admin 100% identik dengan website asli. Cukup klik tombol di samping untuk mengunduh video format WebM/MP4 ke laptop Anda!
+            </p>
+        </div>
+        <button type="button" class="btn-download-trigger" onclick="startExportRecording()">
+            <i class="fa-solid fa-download"></i> Unduh File Video (.webm / MP4)
+        </button>
+    </div>
+
+    <script>
+        /**
+         * SIC ULTRA-ACCURATE LAPTOP SCREENCAST ENGINE (1920x1080)
+         * Matches 100% with the real website styles:
+         * - Fonts: Anton, Caveat, Plus Jakarta Sans, Space Mono
+         * - Colors: Emerald #064e3b, #059669, Champagne Gold #f0dc9e, Body #d7e3dc
+         * - Window: Google Chrome on Windows 11 at http://localhost/KaryaMahasiswa
+         * - No voice synthesis: Pure visual text tutorial annotations & subtitles
+         */
+        const canvas = document.getElementById('screencastCanvas');
+        const ctx = canvas.getContext('2d');
+        const W = 1920;
+        const H = 1080;
+
+        let isPlaying = false;
+        let currentTime = 0;
+        const totalDuration = 160; // 2 minutes 40 seconds
+        let lastTime = null;
+        let animId = null;
+
+        // Media Recorder state
+        let mediaRecorder = null;
+        let recordedChunks = [];
+        let isRecording = false;
+
+        // Smooth human mouse cursor
+        let cursor = {
+            x: 960,
+            y: 540,
+            targetX: 960,
+            targetY: 540,
+            clicking: false,
+            clickPulse: 0
+        };
+
+        // 6 Scene Definitions with rich on-screen tutorial texts
+        const scenes = [
+            {
+                id: 1,
+                name: "Beranda Web & Hero",
+                start: 0,
+                end: 26,
+                badge: "LANGKAH 1 DARI 6: JELAJAHI BERANDA SIC",
+                desc: "Kunjungi portal SIC di browser laptop. Pengunjung dapat melihat portofolio mahasiswa, 8 rumpun kategori karya, dan statistik resmi kampus."
+            },
+            {
+                id: 2,
+                name: "Daftar Akun Mahasiswa",
+                start: 26,
+                end: 52,
+                badge: "LANGKAH 2 DARI 6: REGISTRASI AKUN MAHASISWA BARU",
+                desc: "Klik tombol 'Register' di navbar. Isi formulir pendaftaran: Nama Lengkap, NIM, Program Studi, Email Kampus, dan Kata Sandi, lalu klik 'Daftar Akun'."
+            },
+            {
+                id: 3,
+                name: "Login ke Sistem",
+                start: 52,
+                end: 78,
+                badge: "LANGKAH 3 DARI 6: LOGIN KE PORTAL MAHASISWA",
+                desc: "Klik menu 'Masuk'. Masukkan NIM atau Email terdaftar beserta kata sandi untuk masuk ke Dashboard Kreator Mahasiswa."
+            },
+            {
+                id: 4,
+                name: "Dashboard & Upload Karya Baru",
+                start: 78,
+                end: 110,
+                badge: "LANGKAH 4 DARI 6: UNGGAH KARYA INOVASI KE KURASI",
+                desc: "Di Creator Panel, klik '+ Unggah Karya Baru'. Pilih kategori, isi judul proyek, tautan repositori/demo, unggah banner, dan ajukan ke kurasi kampus."
+            },
+            {
+                id: 5,
+                name: "Admin Review & Kurasi",
+                start: 110,
+                end: 136,
+                badge: "LANGKAH 5 DARI 6: PENINJAUAN & APPROVAL OLEH KURATOR",
+                desc: "Di sisi Dashboard Admin, kurator memeriksa karya yang masuk dalam antrean kurasi, lalu menekan tombol hijau '✓ Setujui' untuk memvalidasi publikasi."
+            },
+            {
+                id: 6,
+                name: "Karya Resmi Tayang di Publik",
+                start: 136,
+                end: 160,
+                badge: "LANGKAH 6 DARI 6: KARYA TERVERIFIKASI TAYANG DI ETALASE PUBLIK",
+                desc: "Karya inovasi mahasiswa kini telah resmi tayang di beranda dan etalase publik dengan label terverifikasi, siap diapresiasi oleh industri!"
+            }
+        ];
+
+        // --- RENDER MAIN LOOP ---
+        function render(time) {
+            ctx.clearRect(0, 0, W, H);
+
+            // Active scene calculation
+            let sceneIdx = scenes.findIndex(s => time >= s.start && time < s.end);
+            if (sceneIdx === -1) sceneIdx = scenes.length - 1;
+            const currentScene = scenes[sceneIdx];
+
+            // Update on-screen subtitle card
+            document.getElementById('stepBadge').innerText = currentScene.badge;
+            document.getElementById('stepText').innerText = currentScene.desc;
+            updateActiveCardUI(sceneIdx);
+
+            const progress = (time - currentScene.start) / (currentScene.end - currentScene.start);
+
+            // 1. Draw Windows 11 Chrome Desktop Shell
+            drawWindowsChromeFrame();
+
+            // 2. Draw Current Scene inside Browser Viewport (y: 84 to 1080)
+            switch (sceneIdx) {
+                case 0: drawScene1_Homepage(progress); break;
+                case 1: drawScene2_Register(progress); break;
+                case 2: drawScene3_Login(progress); break;
+                case 3: drawScene4_DashboardUpload(progress); break;
+                case 4: drawScene5_AdminReview(progress); break;
+                case 5: drawScene6_LiveShowcase(progress); break;
+            }
+
+            // 3. Draw Tutorial Callout Bubble on Canvas
+            drawTutorialCallout(currentScene.badge, currentScene.desc);
+
+            // 4. Draw Natural Human Mouse Cursor
+            drawHumanCursor();
+        }
+
+        // ==========================================
+        // SHELL: WINDOWS 11 GOOGLE CHROME BROWSER
+        // ==========================================
+        function drawWindowsChromeFrame() {
+            // Windows Titlebar / Tab strip (h: 42px)
+            ctx.fillStyle = '#0f172a';
+            ctx.fillRect(0, 0, W, 42);
+
+            // Active Tab (Chrome style)
+            ctx.fillStyle = '#1e293b';
+            roundRect(ctx, 16, 8, 290, 34, 8, true, false);
+
+            // Tab Favicon & Title
+            ctx.fillStyle = '#10b981';
+            ctx.beginPath(); ctx.arc(36, 25, 7, 0, Math.PI * 2); ctx.fill();
+
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '600 13px "Plus Jakarta Sans"';
+            ctx.fillText('Portofolio Mahasiswa — Showcase...', 52, 29);
+
+            // Close tab icon
+            ctx.fillStyle = '#94a3b8';
+            ctx.font = '700 12px "Plus Jakarta Sans"';
+            ctx.fillText('✕', 285, 28);
+
+            // Windows Window Controls (Right top)
+            ctx.fillStyle = '#94a3b8';
+            ctx.font = '14px sans-serif';
+            ctx.fillText('─', 1820, 26);
+            ctx.fillText('□', 1855, 26);
+            ctx.fillText('✕', 1890, 26);
+
+            // Omnibox Navigation Bar (h: 42px, y: 42)
+            ctx.fillStyle = '#1e293b';
+            ctx.fillRect(0, 42, W, 42);
+
+            // Back, Forward, Reload
+            ctx.fillStyle = '#94a3b8';
+            ctx.font = '900 15px "Font Awesome 6 Free"';
+            ctx.fillText('', 24, 68);
+            ctx.fillText('', 54, 68);
+            ctx.fillText('', 84, 68);
+
+            // Address URL Bar (y: 47, h: 32)
+            ctx.fillStyle = '#0f172a';
+            roundRect(ctx, 120, 47, 1660, 32, 16, true, false);
+
+            ctx.fillStyle = '#10b981';
+            ctx.font = '900 13px "Font Awesome 6 Free"';
+            ctx.fillText('', 138, 68);
+
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '600 14px "Plus Jakarta Sans"';
+            ctx.fillText('http://localhost/KaryaMahasiswa', 162, 68);
+
+            ctx.fillStyle = '#94a3b8';
+            ctx.font = '500 13px "Plus Jakarta Sans"';
+            ctx.fillText('— Portal SIC UIN Siber Syekh Nurjati Cirebon', 410, 68);
+
+            // Bookmark Star
+            ctx.fillStyle = '#f0dc9e';
+            ctx.font = '900 14px "Font Awesome 6 Free"';
+            ctx.fillText('', 1750, 68);
+
+            // Browser separator
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.08)';
+            ctx.fillRect(0, 83, W, 1);
+        }
+
+        // ==========================================
+        // COMPONENT: WEBSITE NAVBAR (Identik app.blade)
+        // ==========================================
+        function drawWebsiteNavbar(activeMenu = 'Beranda') {
+            const ny = 84;
+            // Background emerald muda segar
+            ctx.fillStyle = '#059669';
+            ctx.fillRect(0, ny, W, 84);
+
+            // Border bottom gold soft
+            ctx.fillStyle = 'rgba(240, 220, 158, 0.35)';
+            ctx.fillRect(0, ny + 82, W, 2);
+
+            // SIC Brand Logo Box (Putih dengan logo)
+            ctx.fillStyle = '#ffffff';
+            roundRect(ctx, 48, ny + 17, 50, 50, 10, true, false);
+            ctx.fillStyle = '#064e3b';
+            ctx.font = '900 22px "Plus Jakarta Sans"';
+            ctx.fillText('SIC', 55, ny + 50);
+
+            // Brand Text
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '900 24px "Plus Jakarta Sans"';
+            ctx.fillText('SIC', 114, ny + 44);
+
+            // Divider vertical
+            ctx.fillStyle = '#f0dc9e';
+            ctx.fillRect(162, ny + 28, 2, 28);
+
+            ctx.font = '700 12px "Space Mono"';
+            ctx.fillText('STUDENT INNOVATION AND CREATIVITY', 176, ny + 46);
+
+            // Nav links
+            const navItems = ['Beranda', 'Tentang', 'Kategori', 'Semua Karya'];
+            let lx = 600;
+            navItems.forEach(item => {
+                ctx.font = (item === activeMenu) ? '800 16px "Plus Jakarta Sans"' : '600 16px "Plus Jakarta Sans"';
+                ctx.fillStyle = (item === activeMenu) ? '#f0dc9e' : 'rgba(255,255,255,0.85)';
+                ctx.fillText(item, lx, ny + 49);
+                if (item === activeMenu) {
+                    ctx.fillStyle = '#f0dc9e';
+                    ctx.fillRect(lx, ny + 59, ctx.measureText(item).width, 3);
+                }
+                lx += 140;
+            });
+
+            // Search Icon Circle Button
+            ctx.fillStyle = '#ffffff';
+            ctx.beginPath(); ctx.arc(1550, ny + 42, 20, 0, Math.PI * 2); ctx.fill();
+            ctx.fillStyle = '#064e3b';
+            ctx.font = '900 14px "Font Awesome 6 Free"';
+            ctx.fillText('', 1543, ny + 47);
+
+            // Right Action Buttons: Masuk & Register
+            ctx.fillStyle = '#ffffff';
+            roundRect(ctx, 1600, ny + 21, 100, 42, 21, true, false);
+            ctx.fillStyle = '#064e3b';
+            ctx.font = '800 15px "Plus Jakarta Sans"';
+            ctx.fillText('Masuk', 1626, ny + 48);
+
+            ctx.fillStyle = '#f0dc9e';
+            roundRect(ctx, 1716, ny + 21, 130, 42, 21, true, false);
+            ctx.fillStyle = '#064e3b';
+            ctx.font = '800 15px "Plus Jakarta Sans"';
+            ctx.fillText('Register', 1750, ny + 48);
+        }
+
+        // ==========================================
+        // SCENE 1: BERANDA WEBSITE
+        // ==========================================
+        function drawScene1_Homepage(p) {
+            // Background Gradasi Hijau Segar Identik welcome.blade
+            const bg = ctx.createLinearGradient(0, 168, 0, H);
+            bg.addColorStop(0, '#10b981');
+            bg.addColorStop(0.35, '#059669');
+            bg.addColorStop(1, '#064e3b');
+            ctx.fillStyle = bg;
+            ctx.fillRect(0, 168, W, H - 168);
+
+            drawWebsiteNavbar('Beranda');
+
+            // Giant Hero Title Box
+            // 1. Red/Gold Anton Title "PORTOFOLIO"
+            ctx.fillStyle = '#f0dc9e';
+            ctx.font = '900 120px "Anton"';
+            ctx.textAlign = 'center';
+            ctx.letterSpacing = '0.08em';
+            ctx.fillText('PORTOFOLIO', 960, 310);
+
+            // 2. Caveat Signature Script "Mahasiswa" overlay rotated -5deg
+            ctx.save();
+            ctx.translate(960, 305);
+            ctx.rotate(-5 * Math.PI / 180);
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '700 84px "Caveat"';
+            ctx.shadowColor = 'rgba(4, 120, 87, 0.8)';
+            ctx.shadowBlur = 18;
+            ctx.fillText('Mahasiswa', 0, 0);
+            ctx.restore();
+
+            // Hero Tagline
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '600 22px "Plus Jakarta Sans"';
+            ctx.textAlign = 'center';
+            ctx.fillText('Etalase Publikasi & Portofolio Inovasi Digital Terverifikasi', 960, 380);
+            ctx.fillText('UIN Siber Syekh Nurjati Cirebon — World Class Cyber Islamic University', 960, 412);
+            ctx.textAlign = 'left';
+
+            // CTA Pill Buttons
+            ctx.fillStyle = '#f0dc9e';
+            roundRect(ctx, 770, 445, 200, 50, 25, true, false);
+            ctx.fillStyle = '#064e3b';
+            ctx.font = '800 16px "Plus Jakarta Sans"';
+            ctx.fillText('★ Lihat Karya', 820, 476);
+
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.18)';
+            ctx.strokeStyle = '#f0dc9e';
+            roundRect(ctx, 990, 445, 210, 50, 25, true, true);
+            ctx.fillStyle = '#ffffff';
+            ctx.fillText('+ Unggah Karyamu', 1030, 476);
+
+            // 3 Spotlight Cards (Identik halaman depan asli)
+            const spotCards = [
+                { cat: 'IoT & Robotika', title: 'Smart Greenhouse Sensor ESP32', mhs: 'Dimas Wicaksono', icon: '🤖' },
+                { cat: 'Website App', title: 'Portal Pembelajaran Virtual AI', mhs: 'Karina Putri', icon: '💻' },
+                { cat: 'Desain & UI/UX', title: 'Redesign SuperApp Kampus Siber', mhs: 'Ahmad Fauzi', icon: '🎨' }
+            ];
+
+            let sx = 280;
+            spotCards.forEach(c => {
+                ctx.fillStyle = '#ffffff';
+                roundRect(ctx, sx, 530, 420, 220, 16, true, false);
+                ctx.strokeStyle = '#f0dc9e';
+                ctx.lineWidth = 1.5;
+                roundRect(ctx, sx, 530, 420, 220, 16, false, true);
+
+                // Badge
+                ctx.fillStyle = '#10b981';
+                roundRect(ctx, sx + 20, 550, 130, 30, 15, true, false);
+                ctx.fillStyle = '#ffffff';
+                ctx.font = '800 12px "Plus Jakarta Sans"';
+                ctx.fillText(c.cat, sx + 32, 570);
+
+                // Title
+                ctx.fillStyle = '#064e3b';
+                ctx.font = '800 20px "Plus Jakarta Sans"';
+                wrapText(ctx, c.title, sx + 20, 615, 380, 26);
+
+                // Author
+                ctx.fillStyle = '#3a5b4e';
+                ctx.font = '700 14px "Space Mono"';
+                ctx.fillText('Oleh: ' + c.mhs, sx + 20, 680);
+
+                // Likes count
+                ctx.fillStyle = '#ef4444';
+                ctx.font = '900 14px "Font Awesome 6 Free"';
+                ctx.fillText('', sx + 20, 715);
+                ctx.fillStyle = '#64748b';
+                ctx.font = '700 13px "Plus Jakarta Sans"';
+                ctx.fillText(' 24 Suka • Terkurasi', sx + 38, 715);
+
+                sx += 460;
+            });
+
+            // Stats Bottom Bar
+            ctx.fillStyle = 'rgba(6, 78, 59, 0.7)';
+            roundRect(ctx, 360, 780, 1200, 80, 20, true, false);
+            ctx.strokeStyle = '#f0dc9e';
+            roundRect(ctx, 360, 780, 1200, 80, 20, false, true);
+
+            ctx.textAlign = 'center';
+            ctx.fillStyle = '#f0dc9e';
+            ctx.font = '900 32px "Space Mono"';
+            ctx.fillText('100% TERBUKA', 540, 825);
+            ctx.fillText('SSO ECAMPUZ', 960, 825);
+            ctx.fillText('8 KATEGORI INOVASI', 1380, 825);
+            ctx.textAlign = 'left';
+
+            // Natural Mouse moves towards "Register"
+            cursor.targetX = 1780;
+            cursor.targetY = 125;
+            cursor.clicking = (p > 0.85);
+        }
+
+        // ==========================================
+        // SCENE 2: FORM REGISTRASI MAHASISWA
+        // ==========================================
+        function drawScene2_Register(p) {
+            drawScene1_Homepage(1);
+
+            // Dark Backdrop Modal Overlay
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.72)';
+            ctx.fillRect(0, 84, W, H - 84);
+
+            // Center Modal Window (Identik modal auth asli)
+            const mx = 670, my = 140, mw = 580, mh = 750;
+            ctx.fillStyle = '#ffffff';
+            roundRect(ctx, mx, my, mw, mh, 20, true, false);
+
+            // Modal Header
+            ctx.fillStyle = '#064e3b';
+            roundRect(ctx, mx, my, mw, 70, 20, true, false);
+            ctx.fillRect(mx, my + 40, mw, 30);
+
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '900 22px "Plus Jakarta Sans"';
+            ctx.fillText('Daftar Akun Mahasiswa Baru', mx + 32, my + 44);
+
+            // Tabs Switcher: [Masuk] [Register (Active)]
+            ctx.fillStyle = '#f1f5f9';
+            roundRect(ctx, mx + 32, my + 90, mw - 64, 46, 23, true, false);
+
+            ctx.fillStyle = '#64748b';
+            ctx.font = '800 15px "Plus Jakarta Sans"';
+            ctx.fillText('Masuk', mx + 90, my + 119);
+
+            ctx.fillStyle = '#f0dc9e';
+            roundRect(ctx, mx + mw / 2, my + 93, (mw - 64) / 2, 40, 20, true, false);
+            ctx.fillStyle = '#064e3b';
+            ctx.fillText('Register', mx + mw / 2 + 70, my + 119);
+
+            // Animated Typing of Fields
+            const name = "Rizky Ramadhan".substring(0, Math.floor(p * 22));
+            const nim = "2308101050".substring(0, Math.floor(p * 18));
+            const prodi = "Teknik Informatika";
+            const email = "rizky@mahasiswa.ac.id".substring(0, Math.floor(p * 26));
+
+            drawFormInput(mx + 32, my + 155, mw - 64, "NAMA LENGKAP MAHASISWA", name, true);
+            drawFormInput(mx + 32, my + 250, mw - 64, "NOMOR INDUK MAHASISWA (NIM)", nim, false);
+            drawFormInput(mx + 32, my + 345, mw - 64, "PROGRAM STUDI", prodi, false);
+            drawFormInput(mx + 32, my + 440, mw - 64, "EMAIL KAMPUS", email, false);
+            drawFormInput(mx + 32, my + 535, mw - 64, "KATA SANDI", "••••••••••••", false);
+
+            // Button "Daftar Akun Sekarang"
+            ctx.fillStyle = (p > 0.8) ? '#047857' : '#059669';
+            roundRect(ctx, mx + 32, my + 645, mw - 64, 52, 12, true, false);
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '800 17px "Plus Jakarta Sans"';
+            ctx.textAlign = 'center';
+            ctx.fillText('✓ Daftar Akun Sekarang', mx + mw / 2, my + 677);
+            ctx.textAlign = 'left';
+
+            if (p > 0.82) {
+                drawToastBubble(W / 2, 110, '✓ Registrasi Berhasil! Mengalihkan ke halaman login...', '#10b981');
+                cursor.targetX = mx + mw / 2;
+                cursor.targetY = my + 670;
+                cursor.clicking = (p > 0.82 && p < 0.9);
+            } else {
+                cursor.targetX = mx + 240;
+                cursor.targetY = my + 480;
+            }
+        }
+
+        // ==========================================
+        // SCENE 3: LOGIN KE SISTEM
+        // ==========================================
+        function drawScene3_Login(p) {
+            drawScene1_Homepage(1);
+
+            // Dark Backdrop Modal Overlay
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.72)';
+            ctx.fillRect(0, 84, W, H - 84);
+
+            // Center Modal Window
+            const mx = 680, my = 180, mw = 560, mh = 620;
+            ctx.fillStyle = '#ffffff';
+            roundRect(ctx, mx, my, mw, mh, 20, true, false);
+
+            // Modal Header
+            ctx.fillStyle = '#064e3b';
+            roundRect(ctx, mx, my, mw, 70, 20, true, false);
+            ctx.fillRect(mx, my + 40, mw, 30);
+
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '900 22px "Plus Jakarta Sans"';
+            ctx.fillText('Masuk ke Portal SIC', mx + 32, my + 44);
+
+            // Tabs Switcher: [Masuk (Active)] [Register]
+            ctx.fillStyle = '#f1f5f9';
+            roundRect(ctx, mx + 32, my + 90, mw - 64, 46, 23, true, false);
+
+            ctx.fillStyle = '#f0dc9e';
+            roundRect(ctx, mx + 32, my + 93, (mw - 64) / 2, 40, 20, true, false);
+            ctx.fillStyle = '#064e3b';
+            ctx.font = '800 15px "Plus Jakarta Sans"';
+            ctx.fillText('Masuk', mx + 90, my + 119);
+
+            ctx.fillStyle = '#64748b';
+            ctx.fillText('Register', mx + mw / 2 + 70, my + 119);
+
+            // SSO Pill
+            ctx.fillStyle = '#ecfdf5';
+            ctx.strokeStyle = '#10b981';
+            roundRect(ctx, mx + 32, my + 155, mw - 64, 46, 10, true, true);
+            ctx.fillStyle = '#047857';
+            ctx.font = '700 13px "Plus Jakarta Sans"';
+            ctx.fillText('★ Single Sign-On (SSO) Bridge eCampuz Aktif', mx + 48, my + 183);
+
+            // Input Fields
+            const typedEmail = "rizky@mahasiswa.ac.id".substring(0, Math.floor(p * 26));
+            drawFormInput(mx + 32, my + 225, mw - 64, "NIM ATAU EMAIL KAMPUS", typedEmail || "rizky@mahasiswa.ac.id", true);
+            drawFormInput(mx + 32, my + 325, mw - 64, "KATA SANDI", "••••••••••••", false);
+
+            // Submit Button "Masuk ke Portal"
+            ctx.fillStyle = (p > 0.75) ? '#047857' : '#059669';
+            roundRect(ctx, mx + 32, my + 450, mw - 64, 54, 12, true, false);
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '800 18px "Plus Jakarta Sans"';
+            ctx.textAlign = 'center';
+            ctx.fillText('Masuk ke Dashboard Kreator ➔', mx + mw / 2, my + 484);
+            ctx.textAlign = 'left';
+
+            if (p > 0.75) {
+                drawToastBubble(W / 2, 110, '✓ Login Berhasil! Selamat Datang, Rizky Ramadhan.', '#10b981');
+                cursor.targetX = mx + mw / 2;
+                cursor.targetY = my + 477;
+                cursor.clicking = (p > 0.75 && p < 0.82);
+            } else {
+                cursor.targetX = mx + 250;
+                cursor.targetY = my + 260;
+            }
+        }
+
+        // ==========================================
+        // SCENE 4: CREATOR PANEL & UPLOAD KARYA
+        // ==========================================
+        function drawScene4_DashboardUpload(p) {
+            // Background identik Creator Panel: --body-bg: #d7e3dc
+            ctx.fillStyle = '#d7e3dc';
+            ctx.fillRect(0, 84, W, H - 84);
+
+            // Left Sidebar (250px) --sidebar-bg: #064e3b
+            const sbW = 260;
+            ctx.fillStyle = '#064e3b';
+            ctx.fillRect(0, 84, sbW, H - 84);
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.12)';
+            ctx.fillRect(sbW - 2, 84, 2, H - 84);
+
+            // Sidebar Brand
+            ctx.fillStyle = '#10b981';
+            roundRect(ctx, 24, 108, 40, 40, 10, true, false);
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '900 16px "Font Awesome 6 Free"';
+            ctx.fillText('', 34, 134);
+
+            ctx.font = '900 20px "Plus Jakarta Sans"';
+            ctx.fillText('SIC Creator', 74, 134);
+
+            // Sidebar Menu Links
+            const mhsNavs = [
+                { icon: '', label: 'Dashboard Saya', active: true },
+                { icon: '📁', label: 'Portofolio Karya', active: false },
+                { icon: '', label: 'Profil Saya', active: false },
+                { icon: '', label: 'Keluar', active: false }
+            ];
+
+            let myY = 190;
+            mhsNavs.forEach(item => {
+                if (item.active) {
+                    ctx.fillStyle = 'rgba(240, 220, 158, 0.15)';
+                    roundRect(ctx, 16, myY, sbW - 32, 44, 10, true, false);
+                    ctx.fillStyle = '#f0dc9e';
+                } else {
+                    ctx.fillStyle = '#cbd5e1';
+                }
+                ctx.font = '800 15px "Plus Jakarta Sans"';
+                ctx.fillText(item.label, 40, myY + 28);
+                myY += 54;
+            });
+
+            // Top Dashboard Header
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(sbW, 84, W - sbW, 76);
+            ctx.fillStyle = '#b2c5b9';
+            ctx.fillRect(sbW, 158, W - sbW, 2);
+
+            ctx.fillStyle = '#064e3b';
+            ctx.font = '900 22px "Plus Jakarta Sans"';
+            ctx.fillText('Selamat Datang, Rizky Ramadhan!', sbW + 36, 130);
+
+            ctx.fillStyle = '#3a5b4e';
+            ctx.font = '600 14px "Space Mono"';
+            ctx.fillText('NIM: 2308101050 • Teknik Informatika', 1400, 130);
+
+            // Action Button: + Unggah Karya Baru
+            ctx.fillStyle = '#10b981';
+            roundRect(ctx, sbW + 36, 185, 230, 48, 24, true, false);
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '800 15px "Plus Jakarta Sans"';
+            ctx.fillText('+ Unggah Karya Baru', sbW + 68, 215);
+
+            // 3 Stat Cards
+            drawMhsStatCard(sbW + 36, 255, 340, 'Total Karya', '0 Karya', '#0284c7');
+            drawMhsStatCard(sbW + 400, 255, 340, 'Karya Disetujui', '0 Karya', '#10b981');
+            drawMhsStatCard(sbW + 764, 255, 340, 'Menunggu Kurasi', (p > 0.8 ? '1 Karya' : '0 Karya'), '#f59e0b');
+
+            // Upload Modal Pop-up (when p > 0.15)
+            if (p > 0.15) {
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+                ctx.fillRect(0, 84, W, H - 84);
+
+                const mx = 540, my = 120, mw = 840, mh = 840;
+                ctx.fillStyle = '#ffffff';
+                roundRect(ctx, mx, my, mw, mh, 20, true, false);
+
+                // Modal Head
+                ctx.fillStyle = '#064e3b';
+                roundRect(ctx, mx, my, mw, 70, 20, true, false);
+                ctx.fillRect(mx, my + 40, mw, 30);
+                ctx.fillStyle = '#ffffff';
+                ctx.font = '900 22px "Plus Jakarta Sans"';
+                ctx.fillText('Unggah Portofolio & Inovasi Baru', mx + 36, my + 44);
+
+                // Inputs
+                const titleText = "Smart Campus IoT: Monitoring Energi Ruang Kelas".substring(0, Math.floor((p - 0.15) * 60));
+                drawFormInput(mx + 36, my + 95, mw - 72, "JUDUL KARYA / PROYEK INOVASI", titleText || "Smart Campus IoT", true);
+                drawFormInput(mx + 36, my + 195, mw - 72, "RUMPUN KATEGORI", "IoT & Robotika (Terpilih)", false);
+                drawFormInput(mx + 36, my + 295, mw - 72, "TIPE PROYEK", "Individu / Mandiri", false);
+                drawFormInput(mx + 36, my + 395, mw - 72, "LINK DEMO / REPOSITORI GITHUB", "https://github.com/kampus/smart-campus-iot", false);
+
+                // Upload Thumbnail Box
+                ctx.fillStyle = '#f8fafc';
+                ctx.strokeStyle = '#b2c5b9';
+                roundRect(ctx, mx + 36, my + 495, mw - 72, 130, 12, true, true);
+                ctx.fillStyle = '#10b981';
+                ctx.font = '900 32px "Font Awesome 6 Free"';
+                ctx.textAlign = 'center';
+                ctx.fillText('', mx + mw / 2, my + 550);
+
+                ctx.fillStyle = '#064e3b';
+                ctx.font = '700 15px "Plus Jakarta Sans"';
+                ctx.fillText('Banner_Sistem_IoT_ESP32.jpg (Terpilih)', mx + mw / 2, my + 585);
+                ctx.textAlign = 'left';
+
+                // Submit CTA
+                ctx.fillStyle = (p > 0.8) ? '#047857' : '#10b981';
+                roundRect(ctx, mx + 36, my + 720, mw - 72, 54, 14, true, false);
+                ctx.fillStyle = '#ffffff';
+                ctx.font = '800 18px "Plus Jakarta Sans"';
+                ctx.textAlign = 'center';
+                ctx.fillText('🚀 Ajukan Karya ke Kurasi Kampus', mx + mw / 2, my + 754);
+                ctx.textAlign = 'left';
+
+                if (p > 0.8) {
+                    drawToastBubble(W / 2, 100, '✓ Karya Berhasil Diajukan! Status saat ini: Menunggu Kurasi Tim Ahli.', '#10b981');
+                    cursor.targetX = mx + mw / 2;
+                    cursor.targetY = my + 747;
+                    cursor.clicking = (p > 0.8 && p < 0.88);
+                } else {
+                    cursor.targetX = mx + 240;
+                    cursor.targetY = my + 435;
+                }
+            } else {
+                cursor.targetX = sbW + 150;
+                cursor.targetY = 208;
+                cursor.clicking = (p > 0.12 && p < 0.16);
+            }
+        }
+
+        // ==========================================
+        // SCENE 5: DASHBOARD ADMIN & KURASI
+        // ==========================================
+        function drawScene5_AdminReview(p) {
+            ctx.fillStyle = '#d7e3dc';
+            ctx.fillRect(0, 84, W, H - 84);
+
+            // Left Admin Sidebar
+            const sbW = 260;
+            ctx.fillStyle = '#064e3b';
+            ctx.fillRect(0, 84, sbW, H - 84);
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.12)';
+            ctx.fillRect(sbW - 2, 84, 2, H - 84);
+
+            // Sidebar Brand
+            ctx.fillStyle = '#f0dc9e';
+            roundRect(ctx, 24, 108, 40, 40, 10, true, false);
+            ctx.fillStyle = '#064e3b';
+            ctx.font = '900 16px "Font Awesome 6 Free"';
+            ctx.fillText('', 34, 134);
+
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '900 20px "Plus Jakarta Sans"';
+            ctx.fillText('SIC Kurator', 74, 134);
+
+            // Top Header
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(sbW, 84, W - sbW, 76);
+            ctx.fillStyle = '#b2c5b9';
+            ctx.fillRect(sbW, 158, W - sbW, 2);
+
+            ctx.fillStyle = '#064e3b';
+            ctx.font = '900 22px "Plus Jakarta Sans"';
+            ctx.fillText('Panel Kurasi & Review Karya Kampus', sbW + 36, 130);
+
+            ctx.fillStyle = '#f59e0b';
+            ctx.font = '800 14px "Space Mono"';
+            ctx.fillText('● 1 KARYA DALAM ANTREAN', 1400, 130);
+
+            // Table Container Card
+            const tx = sbW + 36, ty = 200, tw = W - sbW - 72, th = 640;
+            ctx.fillStyle = '#ffffff';
+            roundRect(ctx, tx, ty, tw, th, 16, true, false);
+            ctx.strokeStyle = '#b2c5b9';
+            roundRect(ctx, tx, ty, tw, th, 16, false, true);
+
+            // Table Header Bar
+            ctx.fillStyle = '#064e3b';
+            roundRect(ctx, tx, ty, tw, 56, 16, true, false);
+            ctx.fillRect(tx, ty + 30, tw, 26);
+
+            ctx.fillStyle = '#f0dc9e';
+            ctx.font = '800 14px "Plus Jakarta Sans"';
+            ctx.fillText('MAHASISWA & PRODI', tx + 24, ty + 34);
+            ctx.fillText('JUDUL KARYA INOVASI', tx + 340, ty + 34);
+            ctx.fillText('KATEGORI', tx + 880, ty + 34);
+            ctx.fillText('STATUS KURASI', tx + 1120, ty + 34);
+            ctx.fillText('AKSI KURATOR', tx + 1340, ty + 34);
+
+            // Row 1: Rizky Ramadhan's newly submitted project
+            const ry = ty + 80;
+            ctx.fillStyle = (p > 0.6) ? 'rgba(16, 185, 129, 0.08)' : '#f8fafc';
+            roundRect(ctx, tx + 16, ry, tw - 32, 88, 12, true, false);
+            ctx.strokeStyle = '#e2e8f0';
+            roundRect(ctx, tx + 16, ry, tw - 32, 88, 12, false, true);
+
+            ctx.fillStyle = '#064e3b';
+            ctx.font = '800 16px "Plus Jakarta Sans"';
+            ctx.fillText('Rizky Ramadhan', tx + 32, ry + 36);
+            ctx.fillStyle = '#64748b';
+            ctx.font = '600 13px "Space Mono"';
+            ctx.fillText('2308101050 • Teknik Informatika', tx + 32, ry + 62);
+
+            ctx.fillStyle = '#064e3b';
+            ctx.font = '700 16px "Plus Jakarta Sans"';
+            ctx.fillText('Smart Campus IoT: Monitoring Energi Ruang Kelas', tx + 340, ry + 42);
+            ctx.fillStyle = '#0284c7';
+            ctx.font = '600 13px "Plus Jakarta Sans"';
+            ctx.fillText('🔗 https://github.com/kampus/smart-campus-iot', tx + 340, ry + 64);
+
+            ctx.fillStyle = '#10b981';
+            ctx.font = '800 14px "Plus Jakarta Sans"';
+            ctx.fillText('IoT & Robotika', tx + 880, ry + 50);
+
+            // Status Badge: switches from Pending to Approved at p > 0.58
+            if (p > 0.58) {
+                ctx.fillStyle = '#d1fae5';
+                roundRect(ctx, tx + 1120, ry + 26, 130, 36, 18, true, false);
+                ctx.fillStyle = '#065f46';
+                ctx.font = '800 13px "Plus Jakarta Sans"';
+                ctx.fillText('✓ Disetujui', tx + 1145, ry + 49);
+
+                // Action shows "Sudah Live"
+                ctx.fillStyle = '#e2e8f0';
+                roundRect(ctx, tx + 1340, ry + 24, 150, 40, 8, true, false);
+                ctx.fillStyle = '#64748b';
+                ctx.font = '700 13px "Plus Jakarta Sans"';
+                ctx.fillText('Karya Aktif Publik', tx + 1360, ry + 49);
+            } else {
+                ctx.fillStyle = '#fef3c7';
+                roundRect(ctx, tx + 1120, ry + 26, 160, 36, 18, true, false);
+                ctx.fillStyle = '#92400e';
+                ctx.font = '800 13px "Plus Jakarta Sans"';
+                ctx.fillText('⏳ Menunggu Kurasi', tx + 1135, ry + 49);
+
+                // Green Approve Button
+                ctx.fillStyle = (p > 0.5) ? '#047857' : '#10b981';
+                roundRect(ctx, tx + 1340, ry + 22, 120, 44, 8, true, false);
+                ctx.fillStyle = '#ffffff';
+                ctx.font = '800 14px "Plus Jakarta Sans"';
+                ctx.fillText('✓ Setujui', tx + 1370, ry + 49);
+            }
+
+            cursor.targetX = tx + 1400;
+            cursor.targetY = ry + 44;
+            cursor.clicking = (p > 0.52 && p < 0.58);
+
+            if (p > 0.6) {
+                drawToastBubble(W / 2, 100, '🎉 Karya Berhasil Disetujui! Proyek langsung tampil di etalase publik.', '#10b981');
+            }
+        }
+
+        // ==========================================
+        // SCENE 6: KARYA TAYANG DI BERANDA PUBLIK
+        // ==========================================
+        function drawScene6_LiveShowcase(p) {
+            // Background
+            const bg = ctx.createLinearGradient(0, 168, 0, H);
+            bg.addColorStop(0, '#10b981');
+            bg.addColorStop(0.4, '#059669');
+            bg.addColorStop(1, '#064e3b');
+            ctx.fillStyle = bg;
+            ctx.fillRect(0, 168, W, H - 168);
+
+            drawWebsiteNavbar('Semua Karya');
+
+            // Header Showcase
+            ctx.fillStyle = '#f0dc9e';
+            ctx.font = '900 16px "Space Mono"';
+            ctx.textAlign = 'center';
+            ctx.fillText('★ SHOWCASE KARYA TERVERIFIKASI MAHASISWA ★', 960, 220);
+
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '900 56px "Anton"';
+            ctx.fillText('ETALASE KARYA TERBARU', 960, 285);
+            ctx.textAlign = 'left';
+
+            // 3 Project Cards (Card 1 is Rizky's IoT project, officially LIVE)
+            const liveCards = [
+                {
+                    title: "Smart Campus IoT: Monitoring Energi Ruang Kelas",
+                    author: "Rizky Ramadhan",
+                    prodi: "Teknik Informatika",
+                    badge: "IoT & Robotika",
+                    isNew: true
+                },
+                {
+                    title: "Smart Greenhouse Sensor Berbasis ESP32",
+                    author: "Dimas Wicaksono",
+                    prodi: "Teknik Elektro",
+                    badge: "IoT & Robotika",
+                    isNew: false
+                },
+                {
+                    title: "Portal Pembelajaran Virtual AI Kampus Siber",
+                    author: "Karina Putri",
+                    prodi: "Desain Komunikasi Visual",
+                    badge: "Website App",
+                    isNew: false
+                }
+            ];
+
+            let lx = 200;
+            liveCards.forEach(c => {
+                ctx.fillStyle = '#ffffff';
+                roundRect(ctx, lx, 350, 480, 480, 20, true, false);
+                ctx.strokeStyle = c.isNew ? '#f0dc9e' : '#b2c5b9';
+                ctx.lineWidth = c.isNew ? 3 : 1.5;
+                roundRect(ctx, lx, 350, 480, 480, 20, false, true);
+
+                // Thumbnail Container
+                ctx.fillStyle = c.isNew ? '#064e3b' : '#047857';
+                roundRect(ctx, lx + 16, 366, 448, 210, 14, true, false);
+
+                // Category pill
+                ctx.fillStyle = '#10b981';
+                roundRect(ctx, lx + 30, 380, 150, 32, 16, true, false);
+                ctx.fillStyle = '#ffffff';
+                ctx.font = '800 13px "Plus Jakarta Sans"';
+                ctx.fillText(c.badge, lx + 44, 401);
+
+                // Verified Gold Seal if newly published
+                if (c.isNew) {
+                    ctx.fillStyle = '#f0dc9e';
+                    roundRect(ctx, lx + 280, 380, 170, 32, 16, true, false);
+                    ctx.fillStyle = '#064e3b';
+                    ctx.font = '900 12px "Plus Jakarta Sans"';
+                    ctx.fillText('★ BARU TERKURASI', lx + 296, 401);
+                }
+
+                // Project Title
+                ctx.fillStyle = '#064e3b';
+                ctx.font = '800 22px "Plus Jakarta Sans"';
+                wrapText(ctx, c.title, lx + 20, 620, 440, 28);
+
+                // Author
+                ctx.fillStyle = '#3a5b4e';
+                ctx.font = '700 14px "Space Mono"';
+                ctx.fillText('Oleh: ' + c.author + ' (' + c.prodi + ')', lx + 20, 710);
+
+                // Detail Button
+                ctx.fillStyle = c.isNew ? '#f0dc9e' : '#059669';
+                roundRect(ctx, lx + 20, 755, 440, 44, 10, true, false);
+                ctx.fillStyle = c.isNew ? '#064e3b' : '#ffffff';
+                ctx.font = '800 15px "Plus Jakarta Sans"';
+                ctx.textAlign = 'center';
+                ctx.fillText('Lihat Detail Portofolio ➔', lx + 240, 782);
+                ctx.textAlign = 'left';
+
+                lx += 520;
+            });
+
+            drawToastBubble(W / 2, 890, '✨ Sukses! Karya inovasi mahasiswa resmi terpublikasi ke seluruh dunia.', '#f0dc9e', '#064e3b');
+
+            cursor.targetX = 440;
+            cursor.targetY = 775;
+        }
+
+        // ==========================================
+        // UI HELPERS
+        // ==========================================
+        function drawFormInput(x, y, w, label, value, isFocused) {
+            ctx.fillStyle = '#064e3b';
+            ctx.font = '800 12px "Plus Jakarta Sans"';
+            ctx.fillText(label, x, y + 14);
+
+            ctx.fillStyle = '#ffffff';
+            ctx.strokeStyle = isFocused ? '#10b981' : '#cbd5e1';
+            ctx.lineWidth = isFocused ? 2 : 1;
+            roundRect(ctx, x, y + 24, w, 46, 8, true, true);
+
+            ctx.fillStyle = '#0f172a';
+            ctx.font = '600 15px "Plus Jakarta Sans"';
+            ctx.fillText(value + (isFocused ? '|' : ''), x + 16, y + 53);
+        }
+
+        function drawMhsStatCard(x, y, w, title, val, color) {
+            ctx.fillStyle = '#ffffff';
+            roundRect(ctx, x, y, w, 110, 14, true, false);
+            ctx.strokeStyle = '#b2c5b9';
+            roundRect(ctx, x, y, w, 110, 14, false, true);
+
+            ctx.fillStyle = '#3a5b4e';
+            ctx.font = '700 14px "Plus Jakarta Sans"';
+            ctx.fillText(title, x + 24, y + 40);
+
+            ctx.fillStyle = color;
+            ctx.font = '900 36px "Space Mono"';
+            ctx.fillText(val, x + 24, y + 86);
+        }
+
+        function drawToastBubble(cx, cy, msg, bgColor, textColor = '#ffffff') {
+            ctx.save();
+            ctx.font = '800 16px "Plus Jakarta Sans"';
+            const tw = ctx.measureText(msg).width + 60;
+            ctx.fillStyle = bgColor;
+            roundRect(ctx, cx - tw / 2, cy, tw, 46, 23, true, false);
+            ctx.fillStyle = textColor;
+            ctx.textAlign = 'center';
+            ctx.fillText(msg, cx, cy + 29);
+            ctx.restore();
+        }
+
+        function drawTutorialCallout(badge, text) {
+            // High contrast tutorial annotation box on bottom right of canvas
+            const bx = 1200, by = 900, bw = 680, bh = 130;
+            ctx.fillStyle = 'rgba(6, 78, 59, 0.95)';
+            roundRect(ctx, bx, by, bw, bh, 16, true, false);
+            ctx.strokeStyle = '#f0dc9e';
+            ctx.lineWidth = 2;
+            roundRect(ctx, bx, by, bw, bh, 16, false, true);
+
+            ctx.fillStyle = '#f0dc9e';
+            ctx.font = '800 13px "Space Mono"';
+            ctx.fillText(badge, bx + 24, by + 34);
+
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '600 15px "Plus Jakarta Sans"';
+            wrapText(ctx, text, bx + 24, by + 65, bw - 48, 24);
+        }
+
+        function roundRect(ctx, x, y, width, height, radius, fill, stroke) {
+            if (typeof radius === 'undefined') radius = 5;
+            ctx.beginPath();
+            ctx.moveTo(x + radius, y);
+            ctx.lineTo(x + width - radius, y);
+            ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+            ctx.lineTo(x + width, y + height - radius);
+            ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+            ctx.lineTo(x + radius, y + height);
+            ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+            ctx.lineTo(x, y + radius);
+            ctx.quadraticCurveTo(x, y, x + radius, y);
+            ctx.closePath();
+            if (fill) ctx.fill();
+            if (stroke) ctx.stroke();
+        }
+
+        function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+            const words = text.split(' ');
+            let line = '';
+            for (let n = 0; n < words.length; n++) {
+                const testLine = line + words[n] + ' ';
+                const metrics = ctx.measureText(testLine);
+                if (metrics.width > maxWidth && n > 0) {
+                    ctx.fillText(line, x, y);
+                    line = words[n] + ' ';
+                    y += lineHeight;
+                } else {
+                    line = testLine;
+                }
+            }
+            ctx.fillText(line, x, y);
+        }
+
+        // Realistic Human Mouse Cursor
+        function drawHumanCursor() {
+            cursor.x += (cursor.targetX - cursor.x) * 0.16;
+            cursor.y += (cursor.targetY - cursor.y) * 0.16;
+
+            if (cursor.clicking) {
+                ctx.strokeStyle = 'rgba(240, 220, 158, 0.9)';
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                ctx.arc(cursor.x, cursor.y, 16, 0, Math.PI * 2);
+                ctx.stroke();
+            }
+
+            ctx.save();
+            ctx.translate(cursor.x, cursor.y);
+            ctx.fillStyle = '#ffffff';
+            ctx.strokeStyle = '#000000';
+            ctx.lineWidth = 2;
+
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(0, 24);
+            ctx.lineTo(6, 18);
+            ctx.lineTo(13, 30);
+            ctx.lineTo(17, 28);
+            ctx.lineTo(10, 16);
+            ctx.lineTo(18, 16);
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+            ctx.restore();
+        }
+
+        // ==========================================
+        // TIMELINE & CONTROLLER
+        // ==========================================
+        function updateUI() {
+            const pct = (currentTime / totalDuration) * 100;
+            document.getElementById('timelineFill').style.width = pct + '%';
+
+            const curM = Math.floor(currentTime / 60);
+            const curS = Math.floor(currentTime % 60);
+            const totM = Math.floor(totalDuration / 60);
+            const totS = Math.floor(totalDuration % 60);
+
+            document.getElementById('timeLabel').innerText =
+                String(curM).padStart(2, '0') + ':' + String(curS).padStart(2, '0') + ' / ' +
+                String(totM).padStart(2, '0') + ':' + String(totS).padStart(2, '0');
+        }
+
+        function updateActiveCardUI(idx) {
+            const cards = document.querySelectorAll('.scene-item-card');
+            cards.forEach((c, i) => c.classList.toggle('active', i === idx));
+        }
+
+        function frameLoop(timestamp) {
+            if (!lastTime) lastTime = timestamp;
+            const dt = (timestamp - lastTime) / 1000;
+            lastTime = timestamp;
+
+            if (isPlaying) {
+                currentTime += dt;
+                if (currentTime >= totalDuration) {
+                    currentTime = totalDuration;
+                    pauseVideo();
+                    if (isRecording) stopRecording();
+                }
+                updateUI();
+            }
+
+            render(currentTime);
+            animId = requestAnimationFrame(frameLoop);
+        }
+
+        function playVideo() {
+            isPlaying = true;
+            document.getElementById('playIcon').className = 'fa-solid fa-pause';
+            lastTime = null;
+        }
+
+        function pauseVideo() {
+            isPlaying = false;
+            document.getElementById('playIcon').className = 'fa-solid fa-play';
+        }
+
+        function togglePlayPause() {
+            if (isPlaying) pauseVideo();
+            else playVideo();
+        }
+
+        function restartVideo() {
+            currentTime = 0;
+            updateUI();
+            playVideo();
+        }
+
+        function goToScene(idx) {
+            currentTime = scenes[idx].start;
+            updateUI();
+            updateActiveCardUI(idx);
+            render(currentTime);
+        }
+
+        function seekVideo(e) {
+            const rect = e.currentTarget.getBoundingClientRect();
+            const pct = (e.clientX - rect.left) / rect.width;
+            currentTime = pct * totalDuration;
+            updateUI();
+            render(currentTime);
+        }
+
+        function toggleFullscreen() {
+            const box = document.querySelector('.video-theater-wrapper');
+            if (!document.fullscreenElement) {
+                box.requestFullscreen().catch(err => alert(err.message));
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        // ==========================================
+        // EXPORT VIDEO AS WEBM / MP4
+        // ==========================================
+        function startExportRecording() {
+            if (isRecording) return;
+
+            alert("Perekaman video screencast akan dimulai otomatis dari awal. Setelah selesai (atau klik tombol rekam lagi untuk berhenti), file video akan otomatis diunduh ke folder Downloads laptop Anda!");
+
+            currentTime = 0;
+            updateUI();
+
+            const stream = canvas.captureStream(30);
+            let options = { mimeType: 'video/webm;codecs=vp9' };
+            try {
+                mediaRecorder = new MediaRecorder(stream, options);
+            } catch (e) {
+                try {
+                    mediaRecorder = new MediaRecorder(stream, { mimeType: 'video/webm' });
+                } catch (e2) {
+                    mediaRecorder = new MediaRecorder(stream);
+                }
+            }
+
+            recordedChunks = [];
+            mediaRecorder.ondataavailable = function(e) {
+                if (e.data && e.data.size > 0) recordedChunks.push(e.data);
+            };
+
+            mediaRecorder.onstop = function() {
+                const blob = new Blob(recordedChunks, { type: 'video/webm' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'Video_Panduan_Layar_SIC_UIN_Siber_Cirebon.webm';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+
+                isRecording = false;
+                const btn = document.getElementById('btnRecord');
+                btn.classList.remove('recording');
+                document.getElementById('recordText').innerText = "Rekam & Unduh Video";
+                alert("✓ Rekaman selesai! File 'Video_Panduan_Layar_SIC_UIN_Siber_Cirebon.webm' berhasil diunduh ke laptop Anda.");
+            };
+
+            mediaRecorder.start();
+            isRecording = true;
+
+            const btn = document.getElementById('btnRecord');
+            btn.classList.add('recording');
+            document.getElementById('recordText').innerText = "Sedang Merekam... (Klik untuk Stop)";
+
+            playVideo();
+        }
+
+        function stopRecording() {
+            if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+                mediaRecorder.stop();
+            }
+        }
+
+        function toggleRecording() {
+            if (isRecording) stopRecording();
+            else startExportRecording();
+        }
+
+        // Initialize First Frame
+        window.addEventListener('load', () => {
+            render(0);
+            updateUI();
+            animId = requestAnimationFrame(frameLoop);
+        });
+    </script>
+</body>
+</html>

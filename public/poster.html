@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poster Panduan Resmi — SIC (Student Innovation &amp; Creativity)</title>
+
+    <!-- Google Fonts: Anton + Caveat + Plus Jakarta Sans + Space Mono (Identik 100% dengan Website Kita) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- html2canvas untuk download gambar HD langsung ke laptop -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <style>
+        :root {
+            /* Warna Resmi Website Kita */
+            --bg-green-light: #10b981;
+            --bg-green-primary: #059669;
+            --bg-green-dark: #064e3b;
+            --bg-green-subtle: #ecfdf5;
+            --accent-gold: #f0dc9e;
+            --accent-gold-hover: #e0c67e;
+            --accent-gold-light: #faf4e1;
+            --text-dark: #064e3b;
+            --text-muted: #3a5b4e;
+            --card-white: #ffffff;
+            --border-soft: rgba(5, 150, 105, 0.18);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #09120e;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 24px 16px 80px;
+        }
+
+        /* Top Action Toolbar */
+        .poster-top-bar {
+            width: 100%;
+            max-width: 940px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(6, 78, 59, 0.85);
+            backdrop-filter: blur(14px);
+            border: 1.5px solid rgba(240, 220, 158, 0.3);
+            border-radius: 50px;
+            padding: 12px 24px;
+            margin-bottom: 22px;
+            gap: 12px;
+            flex-wrap: wrap;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .bar-title {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: var(--accent-gold);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .bar-buttons {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn-bar {
+            padding: 9px 22px;
+            border-radius: 50px;
+            font-size: 0.86rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-download-hd {
+            background: linear-gradient(135deg, var(--bg-green-light), var(--bg-green-primary));
+            color: #ffffff;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+        }
+        .btn-download-hd:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.6);
+        }
+
+        .btn-print-pdf {
+            background: linear-gradient(135deg, var(--accent-gold-light), var(--accent-gold));
+            color: var(--text-dark);
+            box-shadow: 0 4px 14px rgba(240, 220, 158, 0.35);
+        }
+        .btn-print-pdf:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(240, 220, 158, 0.55);
+        }
+
+        .btn-back-web {
+            background: rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+        .btn-back-web:hover {
+            background: rgba(255, 255, 255, 0.22);
+        }
+
+        /* ========================================================
+           POSTER CANVAS: BUKU PANDUAN RESMI SESUAI WEBSITE KITA
+           ======================================================== */
+        .poster-sheet {
+            width: 100%;
+            max-width: 900px;
+            background: linear-gradient(180deg, #10b981 0%, #059669 30%, #064e3b 85%, #04382a 100%);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 0 2px rgba(240, 220, 158, 0.4);
+            padding: 44px 46px 40px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Subtle grid & soft glow overlay */
+        .poster-sheet::before {
+            content: '';
+            position: absolute;
+            top: -120px;
+            right: -120px;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(240, 220, 158, 0.25) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .poster-sheet::after {
+            content: '';
+            position: absolute;
+            bottom: -150px;
+            left: -150px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        /* 1. Header Navbar (Identik dengan Header Web) */
+        .poster-nav-header {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 22px;
+            border-bottom: 2px solid rgba(240, 220, 158, 0.35);
+        }
+
+        .brand-cluster {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .brand-logo-frame {
+            width: 64px;
+            height: 64px;
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+            flex-shrink: 0;
+        }
+
+        .brand-logo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .brand-title-wrap h2 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #ffffff;
+            letter-spacing: -0.01em;
+            line-height: 1.1;
+        }
+
+        .brand-title-wrap p {
+            font-size: 0.76rem;
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+            color: var(--accent-gold);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        .univ-pill-box {
+            background: rgba(240, 220, 158, 0.15);
+            border: 1.5px solid var(--accent-gold);
+            border-radius: 12px;
+            padding: 8px 18px;
+            text-align: right;
+        }
+
+        .univ-pill-box .tag-univ {
+            font-size: 0.65rem;
+            font-weight: 800;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            display: block;
+        }
+
+        .univ-pill-box .name-univ {
+            font-size: 0.88rem;
+            font-weight: 900;
+            color: #ffffff;
+            display: block;
+            margin-top: 2px;
+        }
+
+        /* 2. Hero Headline (Sesuai Banner Depan Web Kita) */
+        .poster-hero-center {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            margin: 32px 0 28px;
+        }
+
+        .pill-ribbon-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.2), rgba(240, 220, 158, 0.25));
+            border: 1px solid var(--accent-gold);
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-size: 0.78rem;
+            font-weight: 800;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 14px;
+        }
+
+        .hero-title-giant-box {
+            position: relative;
+            display: inline-block;
+            margin: 0 auto;
+        }
+
+        .hero-giant-anton {
+            font-family: 'Anton', sans-serif;
+            font-size: 5rem;
+            color: var(--accent-gold);
+            line-height: 0.9;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            text-shadow: 0 8px 24px rgba(240, 220, 158, 0.4);
+            user-select: none;
+        }
+
+        .hero-script-caveat {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -46%) rotate(-5deg);
+            font-family: 'Caveat', cursive;
+            font-size: 4.2rem;
+            color: #ffffff;
+            font-weight: 700;
+            white-space: nowrap;
+            text-shadow: 0 4px 14px rgba(4, 120, 87, 0.8), 2px 2px 0px rgba(0, 0, 0, 0.3);
+            pointer-events: none;
+        }
+
+        .hero-subtitle-desc {
+            font-size: 1rem;
+            color: #ffffff;
+            font-weight: 600;
+            max-width: 760px;
+            margin: 18px auto 0;
+            line-height: 1.6;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        /* 3. Section: Apa Itu SIC? (Manifesto & Deskripsi Asli Web Kita) */
+        .about-sic-card {
+            position: relative;
+            z-index: 2;
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 24px 28px;
+            color: var(--text-dark);
+            margin-bottom: 26px;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+            border: 2px solid rgba(240, 220, 158, 0.6);
+        }
+
+        .about-sic-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            border-bottom: 1.5px solid var(--border-soft);
+            padding-bottom: 10px;
+        }
+
+        .about-sic-header h3 {
+            font-family: 'Anton', sans-serif;
+            font-size: 1.4rem;
+            letter-spacing: 0.03em;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-transform: uppercase;
+        }
+
+        .badge-open-access {
+            background: var(--bg-green-light);
+            color: #ffffff;
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .about-manifesto-text {
+            font-size: 0.92rem;
+            color: #1e3a2f;
+            line-height: 1.65;
+            margin-bottom: 16px;
+        }
+
+        .about-features-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+
+        .feat-box-clean {
+            background: var(--bg-green-subtle);
+            border: 1px solid var(--border-soft);
+            border-radius: 10px;
+            padding: 12px 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .feat-box-clean i {
+            color: var(--bg-green-primary);
+            font-size: 1.15rem;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .feat-box-clean strong {
+            font-size: 0.82rem;
+            color: var(--text-dark);
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        .feat-box-clean span {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+            display: block;
+        }
+
+        /* 4. Section: Alur Publikasi Karya (Sesuai Web, Tanpa SSO) */
+        .flow-section-title {
+            position: relative;
+            z-index: 2;
+            font-family: 'Anton', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 0.03em;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        .flow-grid-steps {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+
+        .flow-step-item {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1.5px solid rgba(255, 255, 255, 0.16);
+            border-radius: 14px;
+            padding: 14px 18px;
+            display: grid;
+            grid-template-columns: 50px 1fr;
+            gap: 16px;
+            align-items: center;
+            backdrop-filter: blur(8px);
+            transition: all 0.2s ease;
+        }
+
+        .flow-step-item:hover {
+            border-color: var(--accent-gold);
+            background: rgba(240, 220, 158, 0.1);
+        }
+
+        .step-circle-badge {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--accent-gold-light), var(--accent-gold));
+            color: var(--text-dark);
+            font-family: 'Space Mono', monospace;
+            font-size: 1.25rem;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(240, 220, 158, 0.4);
+        }
+
+        .step-details h4 {
+            font-size: 0.98rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .step-details h4 .step-actor-pill {
+            font-size: 0.65rem;
+            font-weight: 800;
+            padding: 2px 8px;
+            border-radius: 50px;
+            background: rgba(16, 185, 129, 0.3);
+            border: 1px solid var(--bg-green-light);
+            color: #ffffff;
+            text-transform: uppercase;
+        }
+
+        .step-details p {
+            font-size: 0.82rem;
+            color: #e2e8f0;
+            line-height: 1.5;
+        }
+
+        /* 5. Section: 8 Rumpun Kategori Karya (Lengkap Sesuai Web) */
+        .categories-container-card {
+            position: relative;
+            z-index: 2;
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 24px 28px;
+            color: var(--text-dark);
+            margin-bottom: 26px;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+            border: 2px solid rgba(240, 220, 158, 0.6);
+        }
+
+        .categories-title-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            border-bottom: 1.5px solid var(--border-soft);
+            padding-bottom: 10px;
+        }
+
+        .categories-title-bar h3 {
+            font-family: 'Anton', sans-serif;
+            font-size: 1.4rem;
+            letter-spacing: 0.03em;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-transform: uppercase;
+        }
+
+        .category-8-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .cat-mini-card {
+            background: #f8fafc;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 12px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .cat-mini-card:hover {
+            border-color: var(--bg-green-primary);
+            background: var(--bg-green-subtle);
+            transform: translateY(-2px);
+        }
+
+        .cat-icon-heading {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .cat-icon-heading i {
+            color: var(--bg-green-primary);
+            font-size: 1rem;
+        }
+
+        .cat-mini-tags {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            line-height: 1.35;
+        }
+
+        /* 6. Footer Resmi */
+        .poster-footer-strip {
+            position: relative;
+            z-index: 2;
+            border-top: 1.5px solid rgba(255, 255, 255, 0.2);
+            padding-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .footer-left-info h4 {
+            font-size: 0.95rem;
+            font-weight: 900;
+            color: var(--accent-gold);
+            margin-bottom: 4px;
+        }
+
+        .footer-left-info p {
+            font-size: 0.75rem;
+            color: #cbd5e1;
+            line-height: 1.45;
+        }
+
+        .footer-right-pill {
+            background: linear-gradient(135deg, var(--accent-gold-light), var(--accent-gold));
+            color: var(--text-dark);
+            padding: 9px 20px;
+            border-radius: 50px;
+            font-weight: 900;
+            font-size: 0.8rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(240, 220, 158, 0.35);
+            white-space: nowrap;
+        }
+
+        /* Print Settings (Cetak A4 Bersih) */
+        @media print {
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            .poster-top-bar {
+                display: none !important;
+            }
+
+            .poster-sheet {
+                width: 100% !important;
+                max-width: 100% !important;
+                min-height: 100vh !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                border: none !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                padding: 24px 28px !important;
+            }
+
+            @page {
+                size: A4 portrait;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Top Action Toolbar -->
+    <div class="poster-top-bar">
+        <div class="bar-title">
+            <i class="fa-solid fa-file-invoice"></i>
+            <span>Poster Panduan Resmi — SIC (Student Innovation &amp; Creativity)</span>
+        </div>
+        <div class="bar-buttons">
+            <button type="button" class="btn-bar btn-download-hd" onclick="exportPosterImage()">
+                <i class="fa-solid fa-cloud-arrow-down"></i> Download Gambar HD (PNG)
+            </button>
+            <button type="button" class="btn-bar btn-print-pdf" onclick="window.print()">
+                <i class="fa-solid fa-print"></i> Cetak / Simpan PDF (A4)
+            </button>
+            <a href="/" class="btn-bar btn-back-web">
+                <i class="fa-solid fa-house"></i> Kembali ke Web
+            </a>
+        </div>
+    </div>
+
+    <!-- ========================================================
+         LEMBAR POSTER RESMI SESUAI WEBSITE KITA
+         ======================================================== -->
+    <div class="poster-sheet" id="posterArea">
+
+        <!-- 1. Header Resmi -->
+        <header class="poster-nav-header">
+            <div class="brand-cluster">
+                <div class="brand-logo-frame">
+                    <img src="images/sic-logo.jpg" alt="SIC Logo"
+                        onerror="this.src='https://ui-avatars.com/api/?name=SIC&background=064e3b&color=f0dc9e&bold=true'">
+                </div>
+                <div class="brand-title-wrap">
+                    <h2>SIC CREATOR PORTAL</h2>
+                    <p>STUDENT INNOVATION AND CREATIVITY</p>
+                </div>
+            </div>
+
+            <div class="univ-pill-box">
+                <span class="tag-univ">PORTAL RESMI KAMPUS SIBER</span>
+                <strong class="name-univ">UIN Siber Syekh Nurjati Cirebon</strong>
+            </div>
+        </header>
+
+        <!-- 2. Hero Headline (Identik dengan welcome.blade) -->
+        <section class="poster-hero-center">
+            <div class="pill-ribbon-tag">
+                <i class="fa-solid fa-star"></i> PANDUAN RESMI ALUR PUBLIKASI KARYA MAHASISWA
+            </div>
+            <div class="hero-title-giant-box">
+                <h1 class="hero-giant-anton">PORTOFOLIO</h1>
+                <div class="hero-script-caveat">Mahasiswa</div>
+            </div>
+            <p class="hero-subtitle-desc">
+                Wadah resmi publikasi, portofolio digital terverifikasi, dan etalase karya inovatif civitas akademika untuk industri, riset, dan masyarakat luas.
+            </p>
+        </section>
+
+        <!-- 3. Apa Itu SIC? (Manifesto & Deskripsi Asli dari Section #tentang Web Kita) -->
+        <section class="about-sic-card">
+            <div class="about-sic-header">
+                <h3><i class="fa-solid fa-circle-nodes" style="color: var(--bg-green-primary);"></i> Mengenal Portal SIC</h3>
+                <span class="badge-open-access">100% Akses Terbuka Tanpa Syarat</span>
+            </div>
+            <p class="about-manifesto-text">
+                <strong>Karya akademik tidak boleh hanya berakhir di rak arsip atau tersimpan di harddisk!</strong> Portal <strong>SIC (Student Innovation &amp; Creativity)</strong> hadir sebagai panggung etalase digital resmi terkurasi kampus. Kami mempertemukan dedikasi talenta muda mahasiswa dengan para profesional industri, rekruter pencari bakat, sesama akademisi, serta publik penikmat karya kreatif.
+            </p>
+            <div class="about-features-row">
+                <div class="feat-box-clean">
+                    <i class="fa-solid fa-user-graduate"></i>
+                    <div>
+                        <strong>Mahasiswa Kreator</strong>
+                        <span>Unggah proyek, bangun reputasi &amp; portofolio profesional sejak kuliah.</span>
+                    </div>
+                </div>
+                <div class="feat-box-clean">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <div>
+                        <strong>Kurasi Admin Kampus</strong>
+                        <span>Review ketat untuk menjamin orisinalitas, etika akademik, &amp; mutu karya.</span>
+                    </div>
+                </div>
+                <div class="feat-box-clean">
+                    <i class="fa-solid fa-globe"></i>
+                    <div>
+                        <strong>Pengunjung &amp; Industri</strong>
+                        <span>Eksplorasi seluruh karya secara gratis tanpa perlu registrasi atau login.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Alur Publikasi Karya (Sesuai Cara Kerja Web Kita, Tanpa SSO) -->
+        <div class="flow-section-title">
+            <i class="fa-solid fa-route"></i>
+            <span>Alur 5 Langkah Publikasi Karya di Website:</span>
+        </div>
+
+        <div class="flow-grid-steps">
+            <!-- Langkah 1 -->
+            <div class="flow-step-item">
+                <div class="step-circle-badge">01</div>
+                <div class="step-details">
+                    <h4>
+                        Registrasi &amp; Login Akun Mahasiswa
+                        <span class="step-actor-pill">Kreator</span>
+                    </h4>
+                    <p>
+                        Buka website <code>http://localhost/KaryaMahasiswa</code>, klik tombol <strong>Register</strong> di navbar. Isi nama lengkap, NIM, program studi, email, dan password untuk membuat akun mahasiswa, lalu masuk ke sistem.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Langkah 2 -->
+            <div class="flow-step-item">
+                <div class="step-circle-badge">02</div>
+                <div class="step-details">
+                    <h4>
+                        Masuk Dashboard &amp; Klik "+ Unggah Karya Baru"
+                        <span class="step-actor-pill">Kreator</span>
+                    </h4>
+                    <p>
+                        Setelah login, mahasiswa diarahkan ke <strong>Creator Panel (Dashboard Mahasiswa)</strong>. Klik tombol <strong>"+ Unggah Karya Baru"</strong> untuk membuka formulir pengajuan karya.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Langkah 3 -->
+            <div class="flow-step-item">
+                <div class="step-circle-badge">03</div>
+                <div class="step-details">
+                    <h4>
+                        Isi Detail Karya &amp; Tentukan Mode Kolaborasi
+                        <span class="step-actor-pill">Formulir</span>
+                    </h4>
+                    <p>
+                        Pilih rumpun kategori karya, isi judul proyek, deskripsi ringkas, tautan live demo / repositori GitHub, serta unggah tangkapan layar/banner proyek. Tentukan mode pengerjaan: <strong>Individu (Mandiri)</strong> atau <strong>Kelompok (Kolaborasi Tim)</strong> dengan mencantumkan nama rekan satu tim.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Langkah 4 -->
+            <div class="flow-step-item">
+                <div class="step-circle-badge">04</div>
+                <div class="step-details">
+                    <h4>
+                        Kurasi &amp; Validasi oleh Admin Kampus
+                        <span class="step-actor-pill" style="background: rgba(240, 220, 158, 0.3); color: var(--accent-gold); border-color: var(--accent-gold);">Admin Kurator</span>
+                    </h4>
+                    <p>
+                        Karya yang diajukan masuk ke antrean kurasi di <strong>Dashboard Admin</strong>. Administrator kampus memeriksa kelayakan teknis, etika akademik, dan orisinalitas proyek sebelum menekan tombol <strong>"✓ Setujui (Approve)"</strong>.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Langkah 5 -->
+            <div class="flow-step-item">
+                <div class="step-circle-badge">05</div>
+                <div class="step-details">
+                    <h4>
+                        Karya Resmi Terpublikasi di Etalase Publik
+                        <span class="step-actor-pill">Live Publik</span>
+                    </h4>
+                    <p>
+                        Karya yang disetujui langsung tayang di halaman <strong>Beranda</strong> dan katalog <strong>Semua Karya</strong> dengan lencana <em>Pilihan Kurator</em>. Publik dapat melihat detail karya, menguji demo, serta memberikan apresiasi tombol <strong>Like (Suka)</strong>.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. 8 Rumpun Kategori Karya (Lengkap Sesuai Halaman /kategori Web Kita) -->
+        <section class="categories-container-card">
+            <div class="categories-title-bar">
+                <h3><i class="fa-solid fa-layer-group" style="color: var(--bg-green-primary);"></i> 8 Rumpun Kategori Karya yang Didukung</h3>
+                <span style="font-size: 0.76rem; font-weight: 800; color: var(--text-muted); font-family: 'Space Mono', monospace;">MULTIDISIPLIN KAMPUS</span>
+            </div>
+            <div class="category-8-grid">
+                <!-- 1 -->
+                <div class="cat-mini-card">
+                    <div class="cat-icon-heading">
+                        <i class="fa-solid fa-bezier-curve"></i>
+                        <span>Desain &amp; UI/UX</span>
+                    </div>
+                    <span class="cat-mini-tags">Figma, Design System, Wireframing, Usability Testing</span>
+                </div>
+                <!-- 2 -->
+                <div class="cat-mini-card">
+                    <div class="cat-icon-heading">
+                        <i class="fa-solid fa-globe"></i>
+                        <span>Website &amp; Web App</span>
+                    </div>
+                    <span class="cat-mini-tags">Laravel, Vue.js, React, REST API, Tailwind CSS</span>
+                </div>
+                <!-- 3 -->
+                <div class="cat-mini-card">
+                    <div class="cat-icon-heading">
+                        <i class="fa-solid fa-mobile-screen"></i>
+                        <span>Aplikasi Mobile</span>
+                    </div>
+                    <span class="cat-mini-tags">Flutter, Dart, React Native, Firebase Cloud Mobile</span>
+                </div>
+                <!-- 4 -->
+                <div class="cat-mini-card">
+                    <div class="cat-icon-heading">
+                        <i class="fa-solid fa-microchip"></i>
+                        <span>IoT &amp; Robotika</span>
+                    </div>
+                    <span class="cat-mini-tags">ESP32, Arduino, LoRaWAN, Sensor Cerdas, Otomasi</span>
+                </div>
+                <!-- 5 -->
+                <div class="cat-mini-card">
+                    <div class="cat-icon-heading">
+                        <i class="fa-solid fa-gamepad"></i>
+                        <span>Game &amp; Animasi</span>
+                    </div>
+                    <span class="cat-mini-tags">Unity 3D, Unreal Engine 5, Blender, Pemodelan 3D</span>
+                </div>
+                <!-- 6 -->
+                <div class="cat-mini-card">
+                    <div class="cat-icon-heading">
+                        <i class="fa-solid fa-palette"></i>
+                        <span>Seni &amp; Ilustrasi</span>
+                    </div>
+                    <span class="cat-mini-tags">Digital Painting, Procreate, Character Design, Seni Murni</span>
+                </div>
+                <!-- 7 -->
+                <div class="cat-mini-card">
+                    <div class="cat-icon-heading">
+                        <i class="fa-solid fa-camera-retro"></i>
+                        <span>Fotografis &amp; Sinema</span>
+                    </div>
+                    <span class="cat-mini-tags">Film Pendek, Dokumenter, Photo Story, Sinematografi</span>
+                </div>
+                <!-- 8 -->
+                <div class="cat-mini-card">
+                    <div class="cat-icon-heading">
+                        <i class="fa-solid fa-flask"></i>
+                        <span>Riset &amp; Sains Terapan</span>
+                    </div>
+                    <span class="cat-mini-tags">Machine Learning, Data Science, Biomaterial, Energi</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Footer Resmi -->
+        <footer class="poster-footer-strip">
+            <div class="footer-left-info">
+                <h4>SIC — Student Innovation &amp; Creativity</h4>
+                <p>
+                    Portal Etalase Portofolio Digital Mahasiswa • UIN Siber Syekh Nurjati Cirebon<br>
+                    Hak Cipta Karya 100% Milik Mahasiswa Kreator • Akses Publik: <code style="color: var(--accent-gold); font-weight: 700;">http://localhost/KaryaMahasiswa</code>
+                </p>
+            </div>
+            <div class="footer-right-pill">
+                <i class="fa-solid fa-shield-check"></i> Terkurasi &amp; Terverifikasi Kampus
+            </div>
+        </footer>
+    </div>
+
+    <!-- Script Export Gambar HD Otomatis -->
+    <script>
+        function exportPosterImage() {
+            const el = document.getElementById('posterArea');
+            const originalShadow = el.style.boxShadow;
+            el.style.boxShadow = 'none';
+
+            // Toast Loading
+            const toast = document.createElement('div');
+            toast.innerText = '⏳ Sedang merender poster HD...';
+            toast.style.position = 'fixed';
+            toast.style.bottom = '24px';
+            toast.style.left = '50%';
+            toast.style.transform = 'translateX(-50%)';
+            toast.style.background = '#064e3b';
+            toast.style.color = '#f0dc9e';
+            toast.style.padding = '12px 28px';
+            toast.style.borderRadius = '50px';
+            toast.style.fontWeight = '800';
+            toast.style.fontSize = '0.9rem';
+            toast.style.zIndex = '9999';
+            toast.style.border = '1.5px solid #f0dc9e';
+            toast.style.boxShadow = '0 8px 24px rgba(0,0,0,0.5)';
+            document.body.appendChild(toast);
+
+            html2canvas(el, {
+                scale: 2,
+                useCORS: true,
+                backgroundColor: '#064e3b'
+            }).then(canvas => {
+                el.style.boxShadow = originalShadow;
+                document.body.removeChild(toast);
+
+                const link = document.createElement('a');
+                link.download = 'Poster_Resmi_SIC_UIN_Siber_Cirebon.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            }).catch(err => {
+                el.style.boxShadow = originalShadow;
+                if (document.body.contains(toast)) document.body.removeChild(toast);
+                alert('Gagal mendownload gambar otomatis. Silakan gunakan tombol "Cetak / Simpan PDF (A4)".');
+            });
+        }
+    </script>
+</body>
+
+</html>
